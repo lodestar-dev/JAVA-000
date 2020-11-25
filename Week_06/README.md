@@ -1,1 +1,1 @@
-学习笔记
+使用E-R Studio建E-R图，自动生成DDL

@@ -1,0 +1,84 @@
+
+-- 
+-- TABLE: good_detail 
+--
+
+CREATE TABLE good_detail(
+    id          DECIMAL(18, 0)    NOT NULL,
+    order_id    DECIMAL(10, 0),
+    goods_id    DECIMAL(10, 0),
+    PRIMARY KEY (id)
+)ENGINE=INNODB
+COMMENT=''
+;
+
+-- 
+-- TABLE: goods 
+--
+
+CREATE TABLE goods(
+    goods_id       DECIMAL(10, 0)    NOT NULL,
+    goods_name     VARCHAR(50),
+    goods_price    DECIMAL(10, 2),
+    PRIMARY KEY (goods_id)
+)ENGINE=INNODB
+COMMENT=''
+;
+
+-- 
+-- TABLE: order 
+--
+
+CREATE TABLE order(
+    order_id      DECIMAL(10, 0)    NOT NULL,
+    user_id       DECIMAL(10, 0),
+    order_name    VARCHAR(100),
+    PRIMARY KEY (order_id)
+)ENGINE=INNODB
+COMMENT=''
+;
+
+-- 
+-- TABLE: user 
+--
+
+CREATE TABLE user(
+    user_id      DECIMAL(10, 0)    NOT NULL,
+    name         VARCHAR(20),
+    tel_phone    VARCHAR(100),
+    address      VARCHAR(100),
+    PRIMARY KEY (user_id)
+)ENGINE=INNODB
+COMMENT=''
+;
+
+
+CREATE INDEX Ref313235 ON good_detail(order_id)
+;
+
+
+CREATE INDEX Ref312236 ON good_detail(goods_id)
+;
+
+
+CREATE INDEX Ref311237 ON order(user_id)
+;
+
+
+ALTER TABLE good_detail ADD CONSTRAINT Reforder2351 
+    FOREIGN KEY (order_id)
+    REFERENCES order(order_id)
+;
+
+ALTER TABLE good_detail ADD CONSTRAINT Refgoods2361 
+    FOREIGN KEY (goods_id)
+    REFERENCES goods(goods_id)
+;
+
+
+ALTER TABLE order ADD CONSTRAINT Refuser2371 
+    FOREIGN KEY (user_id)
+    REFERENCES user(user_id)
+;
+
+
